@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Homework — Make Your Mark Library · Fashion Design Term 3</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #f2ede8;
+  --teal: #0a7a7a;
+  --teal-light: #e0f0f0;
+  --pink: #ea37a3;
+  --pink-light: #fdf1f5;
+  --blue-accent: #4a9aba;
+  --warm-mid: #d4cfc8;
+  --grid: #ddd8d2;
+  --concrete: #8a8a8a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -10%; left: 48%;
+  width: 4px; height: 120vh;
+  background: rgba(255,255,255,0.6);
+  transform: rotate(12deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 30px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+}
+
+.header-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.site-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.site-header h1 em { color: var(--pink); font-style: italic; }
+
+.header-tag {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--ink);
+  color: white;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+}
+
+.section-banner {
+  padding: 14px 20px;
+  margin-bottom: 28px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-left: 6px solid var(--pink);
+  border-radius: 0 4px 4px 0;
+  background: var(--pink-light);
+  color: var(--pink);
+}
+
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 2rem 0 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+h2::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 24px;
+  background: var(--pink);
+  flex-shrink: 0;
+}
+
+p {
+  margin-bottom: 1em;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+a { color: var(--teal); font-weight: 600; }
+a:hover { color: var(--pink); }
+
+ul { margin-left: 18px; margin-bottom: 1em; }
+li { font-size: 0.88rem; margin-bottom: 6px; line-height: 1.7; }
+
+.diagonal-rule {
+  height: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--teal));
+  margin: 28px 0;
+  transform: skewX(-15deg);
+}
+
+/* STEPS */
+.step-block {
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--grid);
+  align-items: flex-start;
+}
+.step-block:last-child { border-bottom: none; }
+
+.step-num {
+  width: 34px; height: 34px;
+  background: var(--pink);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--pink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* IMAGE PANELS */
+.image-panel {
+  background: var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.image-panel-header {
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.08);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue-accent);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.image-panel-body {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) { .image-panel-body { grid-template-columns: 1fr; } }
+
+.img-slot {
+  border-radius: 3px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.img-slot img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.img-slot img:hover { opacity: 0.9; }
+
+.img-slot-placeholder {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.25);
+  font-size: 0.78rem;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.img-caption {
+  padding: 8px 12px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.annotation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.annotation {
+  padding: 10px 12px;
+  border-left: 3px solid var(--blue-accent);
+  background: rgba(255,255,255,0.05);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+}
+.annotation strong {
+  color: var(--blue-accent);
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+/* SINGLE IMAGE */
+.single-image {
+  background: var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 18px 0;
+}
+.single-image img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+.single-image-placeholder {
+  width: 100%;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.25);
+  font-size: 0.78rem;
+  font-style: italic;
+}
+.single-image-caption {
+  padding: 10px 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-accent);
+}
+
+/* MARK GRID */
+.mark-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.mark-card {
+  background: white;
+  border: 2px solid var(--warm-mid);
+  border-radius: 4px;
+  padding: 12px 8px;
+  text-align: center;
+  transition: all 0.2s;
+}
+.mark-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+.mark-card .mark-icon { font-size: 1.6rem; display: block; margin-bottom: 5px; }
+.mark-card .mark-name { font-family: 'Space Mono', monospace; font-size: 0.68rem; font-weight: 700; color: var(--teal); display: block; }
+.mark-card .mark-use { font-size: 0.7rem; color: var(--concrete); margin-top: 3px; line-height: 1.4; }
+
+/* BOXES */
+.notice {
+  background: rgba(234,55,163,0.08);
+  border-left: 5px solid var(--pink);
+  padding: 12px 16px;
+  margin: 14px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.85rem;
+}
+.notice strong { color: var(--pink); }
+
+.tip-box {
+  background: #fffbea;
+  border: 2px solid #e6c200;
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 0.85rem;
+}
+.tip-box h4 { color: #a08800; font-family: 'Space Mono', monospace; font-size: 0.72rem; text-transform: uppercase; margin-bottom: 8px; }
+.tip-box ul { margin-left: 16px; }
+.tip-box li { margin-bottom: 4px; }
+
+.info-box {
+  border: 2px solid var(--teal);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  background: var(--teal-light);
+  font-size: 0.87rem;
+}
+.info-box strong { color: var(--teal); }
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+@media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+
+.compare-card {
+  border-radius: 4px;
+  padding: 14px;
+  border: 2px solid var(--warm-mid);
+  background: white;
+}
+.compare-card h4 { font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700; margin-bottom: 8px; }
+.compare-card ul { margin-left: 14px; }
+.compare-card li { font-size: 0.82rem; margin-bottom: 4px; }
+.compare-card.good { border-color: var(--teal); }
+.compare-card.good h4 { color: var(--teal); }
+.compare-card.warn { border-color: var(--blue-accent); }
+.compare-card.warn h4 { color: var(--blue-accent); }
+
+.workflow {
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.workflow-head {
+  background: var(--ink);
+  color: white;
+  padding: 10px 18px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.workflow-body { background: white; padding: 14px 18px; }
+
+/* CHECKLIST */
+.checklist {
+  background: white;
+  border: 2px solid var(--teal);
+  border-radius: 4px;
+  padding: 22px;
+  margin: 28px 0;
+}
+.checklist h3 {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--teal);
+  text-align: center;
+  border-bottom: 2px dashed var(--teal);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--teal);
+  border-radius: 3px;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  margin-top: 2px;
+}
+.check-box:hover { background: var(--teal-light); }
+.check-box.checked { background: var(--teal); }
+.check-box.checked::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  top: 0px; left: 3px;
+}
+.check-label { font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; color: var(--teal); display: block; }
+.check-desc { font-size: 0.78rem; color: var(--concrete); margin-top: 2px; }
+
+/* LIGHTBOX */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+}
+.modal-img {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 92vw;
+  max-height: 90vh;
+  border: 3px solid white;
+  border-radius: 3px;
+}
+.modal-close {
+  position: absolute;
+  top: 18px; right: 28px;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  line-height: 1;
+}
+.modal-close:hover { color: var(--pink); }
+
+footer {
+  text-align: center;
+  padding: 20px 0 10px;
+  border-top: 1px dashed var(--warm-mid);
+  margin-top: 40px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--concrete);
+}
+
+@media (max-width: 600px) {
+  .container { padding: 24px 16px 40px; }
+  .mark-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="site-header">
+    <div class="header-eyebrow">Fashion Design · Term 3 · Session 2 — Homework</div>
+    <h1>Make Your<br><em>Mark Library</em></h1>
+    <span class="header-tag">Complete before class</span>
+  </header>
+
+  <div class="section-banner">HOMEWORK — Do this before your next session</div>
+
+  <p>You will make a set of hand-made marks. In class, you will upload these to Calligraphr and turn them into a font you can type with in Photoshop.</p>
+
+  <div class="diagonal-rule"></div>
+
+  <!-- STUDENT EXAMPLE -->
+  <h2>What You Are Working Toward</h2>
+  <p>Look at how student Micky Zhuo used hand-made marks to connect images and build a research page:</p>
+
+  <div class="image-panel">
+    <div class="image-panel-header">Student Example — Micky Zhuo: Design 2025/26 · Theme: Memory of the City</div>
+    <div class="image-panel-body">
+      <div class="img-slot">
+        <img src="micky_1.jpg" alt="Micky Zhuo research page 1" onclick="openModal(this.src)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="img-slot-placeholder" style="display:none">[micky_1.jpg]</div>
+        <div class="img-caption">Research page — marks connecting primary and secondary images</div>
+      </div>
+      <div class="annotation-list">
+        <div class="annotation"><strong>Gestural marks as texture</strong>Scratchy ink marks surround the images — they feel like the research theme itself.</div>
+        <div class="annotation"><strong>The diagonal slash</strong>One line cuts across the whole page, connecting primary photography with secondary research.</div>
+        <div class="annotation"><strong>Colour as a signal</strong>One blue thread runs across the page. It tells the reader: these things are connected.</div>
+      </div>
+    </div>
+    <div class="image-panel-body" style="border-top:1px solid rgba(255,255,255,0.08);">
+      <div class="img-slot">
+        <img src="micky_2.jpg" alt="Micky Zhuo research page 2" onclick="openModal(this.src)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="img-slot-placeholder" style="display:none">[micky_2.jpg]</div>
+        <div class="img-caption">Research page — drawn rectangles and arrows as analysis</div>
+      </div>
+      <div class="annotation-list">
+        <div class="annotation"><strong>Drawn rectangles</strong>A hand-drawn box over a photograph says "look here — this part matters."</div>
+        <div class="annotation"><strong>Arrows that guide</strong>Small arrows move the reader from one image to the next.</div>
+        <div class="annotation"><strong>Text placed like a mark</strong>Words are rotated and placed as drawing elements — not just information in a straight line.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diagonal-rule"></div>
+
+  <!-- STEP 1 -->
+  <h2>Step 1 — Find Your Research Theme</h2>
+  <p>Your marks should express your research idea. Ask yourself:</p>
+  <ul>
+    <li>What connects your artist references?</li>
+    <li>Is there a feeling or texture in your research images?</li>
+    <li>If your project had a material quality — rough, fragile, geometric — what would it be?</li>
+  </ul>
+
+  <div class="tip-box">
+    <h4>💡 Important question</h4>
+    Does this mark feel like my research theme? A mark about decay should feel different from a mark about structure.
+  </div>
+
+  <div class="diagonal-rule"></div>
+
+  <!-- STEP 2 -->
+  <h2>Step 2 — Plan Your Mark Set</h2>
+  <p>You need <strong>at least 8–10 marks</strong>. Plan one mark for each function:</p>
+
+  <div class="mark-grid">
+    <div class="mark-card">
+      <span class="mark-icon">→</span>
+      <span class="mark-name">1–2 arrows</span>
+      <span class="mark-use">Connect images together</span>
+    </div>
+    <div class="mark-card">
+      <span class="mark-icon">╱</span>
+      <span class="mark-name">1–2 dividers</span>
+      <span class="mark-use">Create zones on the page</span>
+    </div>
+    <div class="mark-card">
+      <span class="mark-icon">◻</span>
+      <span class="mark-name">1 frame</span>
+      <span class="mark-use">Highlight part of an image</span>
+    </div>
+    <div class="mark-card">
+      <span class="mark-icon">≈</span>
+      <span class="mark-name">2–3 textures</span>
+      <span class="mark-use">Hatching, stipple, grain</span>
+    </div>
+    <div class="mark-card">
+      <span class="mark-icon">✦</span>
+      <span class="mark-name">1 emphasis</span>
+      <span class="mark-use">Flag a key reference</span>
+    </div>
+    <div class="mark-card">
+      <span class="mark-icon">∿</span>
+      <span class="mark-name">1 connector</span>
+      <span class="mark-use">Link two ideas together</span>
+    </div>
+  </div>
+
+  <div class="diagonal-rule"></div>
+
+  <!-- STEP 3 -->
+  <h2>Step 3 — Download the Calligraphr Template</h2>
+
+  <div class="workflow">
+    <div class="workflow-head">Getting Your Template</div>
+    <div class="workflow-body">
+      <div class="step-block">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Log in to Calligraphr</div>
+          <p>Go to <a href="https://www.calligraphr.com" target="_blank">calligraphr.com</a> — use your Session 1 account.</p>
+        </div>
+      </div>
+      <div class="step-block">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Download the Punctuation Template</div>
+          <ul>
+            <li>Click <strong>Templates</strong></li>
+            <li>Select the <strong>punctuation / special characters</strong> set</li>
+            <li>Download as <strong>PDF</strong> — print on white paper</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-block">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Plan Your Mark Map</div>
+          <p>Write a small pencil note at the top of each box — which mark goes here? Keep this note — you will need it in class.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diagonal-rule"></div>
+
+  <!-- STEP 4 -->
+  <h2>Step 4 — Make Your Marks</h2>
+  <p>Use <strong>black ink</strong> on the printed template. Fill each box boldly.</p>
+
+  <div class="single-image">
+    <div class="single-image-caption">Example — Completed Mark Template</div>
+    <img src="mark-template-example.jpg" alt="Completed Calligraphr mark template" onclick="openModal(this.src)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="single-image-placeholder" style="display:none">[mark-template-example.jpg — add to repository]</div>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-card good">
+      <h4>✓ Works well</h4>
+      <ul>
+        <li>Bold brush marks in black ink</li>
+        <li>Thick pen gestures</li>
+        <li>Stamp impressions</li>
+        <li>Drawn shapes — arrows, rectangles</li>
+        <li>Flicked or splattered ink</li>
+      </ul>
+    </div>
+    <div class="compare-card warn">
+      <h4>⚠ Test first</h4>
+      <ul>
+        <li>Very light pencil</li>
+        <li>Pale or diluted ink</li>
+        <li>Very fine crosshatching</li>
+        <li>Photographic textures</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Important:</strong> Calligraphr traces whatever black shape it finds. Keep marks <strong>dark, clear, and inside the box</strong>.
+  </div>
+
+  <div class="tip-box">
+    <h4>💡 Tips</h4>
+    <ul>
+      <li>Make 2–3 versions of each mark and choose the best</li>
+      <li>Wait for ink to dry before scanning</li>
+      <li>Make all marks in one session so they feel consistent</li>
+    </ul>
+  </div>
+
+  <div class="diagonal-rule"></div>
+
+  <!-- STEP 5 -->
+  <h2>Step 5 — Scan Your Template</h2>
+  <ul>
+    <li>Scan at <strong>300 DPI or higher</strong></li>
+    <li>Or use <strong>Adobe Scan</strong> or <strong>Microsoft Lens</strong> on your phone</li>
+    <li>Save as <strong>JPEG</strong></li>
+    <li>Check it is straight — no shadows across the boxes</li>
+  </ul>
+
+  <div class="info-box">
+    <strong>Bring to class:</strong> your scanned JPEG and your mark map (the note showing which mark is in which box).
+  </div>
+
+  <div class="diagonal-rule"></div>
+
+  <!-- CHECKLIST -->
+  <div class="checklist">
+    <h3>Homework Checklist ✓</h3>
+    <div class="check-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div>
+        <span class="check-label">I know my research theme</span>
+        <span class="check-desc">I can describe the concept driving my project</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div>
+        <span class="check-label">I have planned 8–10 marks</span>
+        <span class="check-desc">Arrows, dividers, frames, textures, emphasis marks</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div>
+        <span class="check-label">I have downloaded and printed the Calligraphr template</span>
+        <span class="check-desc">Punctuation template from calligraphr.com</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div>
+        <span class="check-label">I have made my marks in black ink</span>
+        <span class="check-desc">Bold, dark, each mark kept inside its box</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div>
+        <span class="check-label">I have scanned my template as a JPEG</span>
+        <span class="check-desc">Clear, straight, 300 DPI minimum</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div>
+        <span class="check-label">I have my mark map</span>
+        <span class="check-desc">A note showing which mark is in which box</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <span class="modal-close" onclick="closeModal()">×</span>
+  <img class="modal-img" id="modalImg">
+</div>
+
+<footer>
+  © 2025 Fashion Design Term 3 — Typing Your Mark-Making · Homework
+</footer>
+
+<script>
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  const states = Array.from(document.querySelectorAll('.check-box')).map(b => b.classList.contains('checked'));
+  localStorage.setItem('marks-hw-checklist', JSON.stringify(states));
+}
+
+function openModal(src) {
+  document.getElementById('modalImg').src = src;
+  document.getElementById('modal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('marks-hw-checklist');
+  if (!saved) return;
+  JSON.parse(saved).forEach((v, i) => {
+    if (v) document.querySelectorAll('.check-box')[i].classList.add('checked');
+  });
+});
+</script>
+</body>
+</html>
