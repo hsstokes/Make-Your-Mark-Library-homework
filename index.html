@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Homework — Make Your Mark Library · Fashion Design Term 3</title>
+<title>Homework: Make Your Mark Library — Fashion Design Term 3</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
   --ink: #1a1a1a;
   --paper: #f2ede8;
-  --teal: #0a7a7a;
-  --teal-light: #e0f0f0;
-  --pink: #ea37a3;
-  --pink-light: #fdf1f5;
-  --blue-accent: #4a9aba;
-  --warm-mid: #d4cfc8;
   --grid: #ddd8d2;
+  --teal: #0a7a7a;   --teal-light: #e3f2f1;
+  --pink: #ea37a3;   --pink-light: #fde9f4;
+  --purple: #6c35c9; --purple-light: #efe8fb;
+  --blue: #2563a8;   --blue-light: #e6eef8;
+  --gold: #c87900;   --gold-light: #fbf0dc;
+  --warm-mid: #d4cfc8;
   --concrete: #8a8a8a;
 }
 
@@ -24,751 +25,534 @@
 
 body {
   font-family: 'IBM Plex Mono', monospace;
+  color: var(--ink);
   background-color: var(--paper);
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 40px 40px;
-  color: var(--ink);
-  font-size: 15px;
+  background-attachment: fixed;
   line-height: 1.7;
+  font-size: 16px;
+  padding: 32px 20px 80px;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: -10%; left: 48%;
-  width: 4px; height: 120vh;
-  background: rgba(255,255,255,0.6);
-  transform: rotate(12deg);
-  pointer-events: none;
-  z-index: 0;
-}
+.wrap { max-width: 960px; margin: 0 auto; }
 
-.container {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 40px 30px 60px;
-  position: relative;
-  z-index: 1;
-}
-
-.site-header {
+/* ---------- Header ---------- */
+header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 20px; flex-wrap: wrap;
   border-bottom: 3px solid var(--ink);
-  padding-bottom: 20px;
-  margin-bottom: 28px;
+  padding-bottom: 20px; margin-bottom: 24px;
 }
-
-.header-eyebrow {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--teal);
+.eyebrow {
+  font-family: 'Space Mono', monospace; font-size: 0.78rem;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--pink);
   margin-bottom: 8px;
 }
-
-.site-header h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 400;
-  line-height: 1.1;
+h1 {
+  font-family: 'DM Serif Display', serif; font-weight: 400;
+  font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.05;
 }
-
-.site-header h1 em { color: var(--pink); font-style: italic; }
-
-.header-tag {
-  display: inline-block;
-  margin-top: 12px;
-  background: var(--ink);
-  color: white;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 2px;
+h1 em { color: var(--teal); font-style: italic; }
+.meta {
+  font-family: 'Space Mono', monospace; font-size: 0.85rem;
+  text-align: right; color: var(--concrete);
 }
+.meta strong { color: var(--ink); display: block; font-size: 1rem; }
 
-.section-banner {
-  padding: 14px 20px;
-  margin-bottom: 28px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border-left: 6px solid var(--pink);
-  border-radius: 0 4px 4px 0;
-  background: var(--pink-light);
-  color: var(--pink);
-}
-
-h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin: 2rem 0 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-h2::before {
-  content: '';
-  display: inline-block;
-  width: 6px; height: 24px;
-  background: var(--pink);
-  flex-shrink: 0;
-}
-
-p {
-  margin-bottom: 1em;
-  font-size: 0.9rem;
-  line-height: 1.8;
-}
-
-a { color: var(--teal); font-weight: 600; }
-a:hover { color: var(--pink); }
-
-ul { margin-left: 18px; margin-bottom: 1em; }
-li { font-size: 0.88rem; margin-bottom: 6px; line-height: 1.7; }
-
-.diagonal-rule {
-  height: 3px;
+/* ---------- Diagonal rule ---------- */
+.rule {
+  height: 10px; margin: 34px 0;
   background: linear-gradient(90deg, var(--pink), var(--teal));
-  margin: 28px 0;
   transform: skewX(-15deg);
 }
 
-/* STEPS */
-.step-block {
-  display: flex;
-  gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--grid);
-  align-items: flex-start;
+h2 {
+  font-family: 'DM Serif Display', serif; font-weight: 400;
+  font-size: 1.9rem; margin: 26px 0 14px;
+  display: flex; align-items: center; gap: 14px;
 }
-.step-block:last-child { border-bottom: none; }
+h2::before {
+  content: ""; width: 5px; height: 30px; background: var(--pink); flex-shrink: 0;
+}
+h3 { font-family: 'Space Mono', monospace; font-size: 1rem; margin: 18px 0 8px; }
+p { margin-bottom: 12px; }
 
+/* ---------- Progress + nav ---------- */
+.progress-wrap { margin-bottom: 18px; }
+.progress-label {
+  font-family: 'Space Mono', monospace; font-size: 0.78rem;
+  display: flex; justify-content: space-between; margin-bottom: 6px;
+}
+.progress-bar { height: 10px; background: var(--warm-mid); border: 2px solid var(--ink); }
+.progress-fill { height: 100%; width: 0; background: var(--teal); transition: width .35s; }
+
+.nav-block {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px; margin-bottom: 10px;
+}
+.nav-btn {
+  font-family: 'Space Mono', monospace; font-size: 0.82rem; font-weight: 700;
+  padding: 12px 10px; background: #fff; color: var(--ink);
+  border: 2px solid var(--ink); cursor: pointer; text-align: left;
+  transition: transform .15s, box-shadow .15s;
+}
+.nav-btn small { display: block; font-weight: 400; color: var(--concrete); font-size: 0.72rem; }
+.nav-btn:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
+.nav-btn.active { color: #fff; }
+.nav-btn.active small { color: rgba(255,255,255,.85); }
+.nav-btn[data-c="ink"].active    { background: var(--ink); }
+.nav-btn[data-c="teal"].active   { background: var(--teal); border-color: var(--teal); }
+.nav-btn[data-c="pink"].active   { background: var(--pink); border-color: var(--pink); }
+.nav-btn[data-c="purple"].active { background: var(--purple); border-color: var(--purple); }
+.nav-btn[data-c="blue"].active   { background: var(--blue); border-color: var(--blue); }
+.nav-btn[data-c="gold"].active   { background: var(--gold); border-color: var(--gold); }
+.nav-btn.done::after { content: " ✓"; }
+
+/* ---------- Sections ---------- */
+.section { display: none; animation: fade .3s; }
+.section.active { display: block; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.section-banner {
+  color: #fff; padding: 20px 22px; margin-bottom: 18px;
+  font-family: 'Space Mono', monospace;
+}
+.section-banner .num { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; opacity: .85; }
+.section-banner .title { font-family: 'DM Serif Display', serif; font-size: 1.9rem; line-height: 1.2; }
+.bg-ink { background: var(--ink); }
+.bg-teal { background: var(--teal); }
+.bg-pink { background: var(--pink); }
+.bg-purple { background: var(--purple); }
+.bg-blue { background: var(--blue); }
+.bg-gold { background: var(--gold); }
+
+.intro { font-size: 1.05rem; margin-bottom: 18px; }
+
+/* ---------- Cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 14px 0 20px; }
+.card {
+  background: #fff; border: 2px solid var(--ink); padding: 16px;
+  cursor: default;
+}
+.card.link { cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.card.link:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
+.card .icon { font-size: 1.6rem; }
+.card .label { font-family: 'Space Mono', monospace; font-weight: 700; margin: 4px 0; }
+.card p { font-size: 0.9rem; margin: 0; }
+.card.teal { border-top: 6px solid var(--teal); }
+.card.pink { border-top: 6px solid var(--pink); }
+.card.blue { border-top: 6px solid var(--blue); }
+.card.gold { border-top: 6px solid var(--gold); }
+
+/* ---------- Boxes ---------- */
+.box { padding: 16px 18px; margin: 16px 0; border-left: 5px solid; background: #fff; }
+.box strong { font-family: 'Space Mono', monospace; }
+.box.pink { border-color: var(--pink); background: var(--pink-light); }
+.box.teal { border-color: var(--teal); background: var(--teal-light); }
+.box.blue { border-color: var(--blue); background: var(--blue-light); }
+.box.gold { border-color: var(--gold); background: var(--gold-light); }
+.box ul { margin: 6px 0 0 20px; }
+
+.example {
+  background: var(--ink); color: #fff; padding: 18px; margin: 16px 0;
+}
+.example .label { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); margin-bottom: 10px; }
+.example img { width: 100%; height: auto; display: block; border: 2px solid #fff; cursor: zoom-in; background: #333; min-height: 60px; }
+.example p { margin: 10px 0 0; font-size: 0.9rem; }
+
+.key {
+  font-family: 'Space Mono', monospace; font-size: 0.82rem;
+  background: #fff; border: 2px solid var(--ink); border-bottom-width: 4px;
+  padding: 1px 7px; white-space: nowrap;
+}
+.path {
+  font-family: 'Space Mono', monospace; font-size: 0.88rem;
+  background: var(--paper); border: 1px dashed var(--concrete); padding: 1px 6px;
+}
+
+/* ---------- Accordion steps ---------- */
+.step { background: #fff; border: 2px solid var(--ink); margin-bottom: 10px; }
+.step-head {
+  width: 100%; display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px; background: none; border: 0; cursor: pointer;
+  font-family: 'Space Mono', monospace; font-size: 0.95rem; font-weight: 700;
+  text-align: left; color: var(--ink);
+}
 .step-num {
-  width: 34px; height: 34px;
-  background: var(--pink);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-  margin-top: 2px;
+  width: 34px; height: 34px; flex-shrink: 0; color: #fff;
+  display: grid; place-items: center; font-size: 0.95rem;
 }
+.step-head .arrow { margin-left: auto; transition: transform .2s; }
+.step.open .arrow { transform: rotate(90deg); }
+.step-body { display: none; padding: 0 18px 16px 66px; }
+.step.open .step-body { display: block; }
+.step-body ol, .step-body ul { margin: 4px 0 10px 20px; }
+.step-body li { margin-bottom: 6px; }
+@media (max-width: 600px) { .step-body { padding-left: 18px; } }
 
-.step-title {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--pink);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 8px;
+/* ---------- Checklist ---------- */
+.checklist { background: #fff; border: 2px solid var(--ink); padding: 16px 18px; margin: 20px 0; }
+.checklist h3 { margin-top: 0; }
+.checklist label {
+  display: flex; gap: 12px; align-items: flex-start; padding: 8px 0;
+  border-bottom: 1px dashed var(--warm-mid); cursor: pointer;
 }
+.checklist label:last-child { border-bottom: 0; }
+.checklist input { width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+.checklist input:checked + span { text-decoration: line-through; color: var(--concrete); }
+.checklist.teal { border-top: 6px solid var(--teal); } .checklist.teal input { accent-color: var(--teal); }
+.checklist.pink { border-top: 6px solid var(--pink); } .checklist.pink input { accent-color: var(--pink); }
+.checklist.purple { border-top: 6px solid var(--purple); } .checklist.purple input { accent-color: var(--purple); }
+.checklist.blue { border-top: 6px solid var(--blue); } .checklist.blue input { accent-color: var(--blue); }
+.checklist.gold { border-top: 6px solid var(--gold); } .checklist.gold input { accent-color: var(--gold); }
 
-/* IMAGE PANELS */
-.image-panel {
-  background: var(--ink);
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 20px 0;
-}
+/* ---------- Reflection cards ---------- */
+.reflect { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 10px 0; }
+.reflect div { background: var(--blue-light); border: 2px solid var(--blue); padding: 12px; font-size: 0.9rem; }
+.reflect b { font-family: 'Space Mono', monospace; color: var(--blue); display: block; }
 
-.image-panel-header {
-  padding: 10px 18px;
-  background: rgba(255,255,255,0.08);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--blue-accent);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block; font-family: 'Space Mono', monospace; font-weight: 700;
+  font-size: 0.88rem; padding: 12px 18px; border: 2px solid var(--ink);
+  background: #fff; color: var(--ink); cursor: pointer; text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
 }
+.btn:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
+.btn.blue { background: var(--blue); color: #fff; border-color: var(--blue); }
+.pager { display: flex; justify-content: space-between; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+.pager .btn.next { background: var(--ink); color: #fff; margin-left: auto; }
 
-.image-panel-body {
-  padding: 16px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed; inset: 0; background: rgba(0,0,0,.88);
+  display: none; align-items: center; justify-content: center; z-index: 100;
+  padding: 20px; cursor: zoom-out;
 }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 90vh; border: 3px solid #fff; }
 
-@media (max-width: 600px) { .image-panel-body { grid-template-columns: 1fr; } }
+footer { margin-top: 40px; font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--concrete); text-align: center; }
+/* ---------- Lesson extras ---------- */
+.card img, .thumbs img, .step-body img.zoom {
+  width: 100%; height: auto; display: block; border: 2px solid var(--ink);
+  cursor: zoom-in; background: var(--warm-mid); min-height: 60px; margin: 8px 0;
+}
+.card img { aspect-ratio: 4/3; object-fit: cover; }
+.step-body img.zoom { max-width: 460px; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 12px; }
+.thumbs figure { margin: 0; }
+.thumbs figcaption { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: #ddd; }
+.example img.zoom { max-height: 520px; object-fit: contain; }
 
-.img-slot {
-  border-radius: 3px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-}
+.video { border: 2px solid var(--ink); background: var(--ink); margin: 6px 0 18px; }
+.video .frame { position: relative; padding-bottom: 56.25%; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video .cap { color: #fff; font-family: 'Space Mono', monospace; font-size: 0.85rem; padding: 8px 12px; }
 
-.img-slot img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.img-slot img:hover { opacity: 0.9; }
+.keys { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 10px 0 20px; }
+.keys div { background: #fff; border: 2px solid var(--ink); padding: 12px; text-align: center; font-size: 0.88rem; }
+.keys .key { display: inline-block; margin-bottom: 6px; }
 
-.img-slot-placeholder {
-  width: 100%;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.25);
-  font-size: 0.78rem;
-  font-style: italic;
-  text-align: center;
-  padding: 20px;
+/* Quiz */
+.q { background: #fff; border: 2px solid var(--ink); border-top: 6px solid var(--purple); padding: 16px 18px; margin-bottom: 14px; }
+.q .qt { font-family: 'Space Mono', monospace; font-weight: 700; margin-bottom: 10px; }
+.opts { display: grid; gap: 8px; }
+.opt {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.95rem; text-align: left;
+  padding: 10px 14px; background: var(--paper); border: 2px solid var(--warm-mid); cursor: pointer; color: var(--ink);
 }
+.opt:hover { border-color: var(--purple); }
+.opt.right { background: #e3f4e6; border-color: #2e7d32; }
+.opt.wrong { background: #fdecec; border-color: #c62828; }
+.fb { font-family: 'Space Mono', monospace; font-size: 0.85rem; margin-top: 8px; min-height: 1.2em; }
+.score { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--purple); }
 
-.img-caption {
-  padding: 8px 12px;
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.55);
-  font-style: italic;
-  border-top: 1px solid rgba(255,255,255,0.08);
+.order { display: grid; gap: 8px; margin: 10px 0; }
+.order-item {
+  display: flex; align-items: center; gap: 10px; background: #fff;
+  border: 2px solid var(--ink); padding: 8px 10px;
 }
+.order-item .pos { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--purple); width: 22px; }
+.order-item .txt { flex: 1; font-size: 0.92rem; }
+.order-item button {
+  width: 38px; height: 38px; font-size: 1rem; border: 2px solid var(--ink);
+  background: var(--paper); cursor: pointer;
+}
+.order-item button:disabled { opacity: .3; cursor: default; }
+.order-item.ok { border-color: #2e7d32; background: #e3f4e6; }
+.order-item.no { border-color: #c62828; background: #fdecec; }
+.btn.purple { background: var(--purple); color: #fff; border-color: var(--purple); }
+.btn.gold { background: var(--gold); color: #fff; border-color: var(--gold); }
+.file { font-family: 'Space Mono', monospace; font-size: 0.85rem; background: var(--paper); padding: 1px 6px; border: 1px dashed var(--concrete); word-break: break-all; }
+.checklist.ink { border-top: 6px solid var(--ink); } .checklist.ink input { accent-color: var(--ink); }
 
-.annotation-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-}
+/* Stuck? troubleshooting */
+.stuck { background: #fff; border: 2px solid var(--ink); margin: 20px 0; }
+.stuck .stuck-head { background: var(--ink); color: #fff; font-family: 'Space Mono', monospace; font-weight: 700; padding: 10px 16px; }
+.stuck .row { display: grid; grid-template-columns: 1fr 1.4fr; border-top: 1px dashed var(--warm-mid); }
+.stuck .row:first-of-type { border-top: 0; }
+.stuck .prob, .stuck .fix { padding: 10px 16px; font-size: 0.92rem; }
+.stuck .prob { font-weight: 600; background: var(--paper); }
+.stuck .prob::before { content: "✗ "; color: #c62828; }
+.stuck .fix::before { content: "→ "; color: var(--teal); font-weight: 700; }
+@media (max-width: 600px) { .stuck .row { grid-template-columns: 1fr; } }
 
-.annotation {
-  padding: 10px 12px;
-  border-left: 3px solid var(--blue-accent);
-  background: rgba(255,255,255,0.05);
-  font-size: 0.8rem;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.85);
+/* ---------- Due banner ---------- */
+.due {
+  background: var(--ink); color: #fff;
+  font-family: 'Space Mono', monospace; font-weight: 700;
+  padding: 16px 20px; display: flex; gap: 14px; align-items: center;
+  font-size: 1rem;
 }
-.annotation strong {
-  color: var(--blue-accent);
-  display: block;
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 4px;
-}
+.due span { font-size: 1.5rem; }
 
-/* SINGLE IMAGE */
-.single-image {
-  background: var(--ink);
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 18px 0;
-}
-.single-image img {
-  width: 100%;
-  max-height: 320px;
-  object-fit: cover;
-  display: block;
-  cursor: pointer;
-}
-.single-image-placeholder {
-  width: 100%;
-  height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.25);
-  font-size: 0.78rem;
-  font-style: italic;
-}
-.single-image-caption {
-  padding: 10px 16px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--blue-accent);
-}
+/* ---------- Save box ---------- */
+.save { background: var(--gold-light); border: 2px solid var(--gold); border-left-width: 8px; padding: 16px 20px; }
+.save .title { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+.save ul { margin-left: 20px; }
 
-/* MARK GRID */
-.mark-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 10px;
-  margin: 16px 0;
+.checklist .head {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Space Mono', monospace; font-weight: 700; margin-bottom: 6px;
 }
+.checklist .count { font-size: 0.82rem; color: var(--gold); }
+.checklist label {
+  display: flex; gap: 12px; align-items: flex-start; padding: 8px 0;
+  border-bottom: 1px dashed var(--warm-mid); cursor: pointer;
+}
+.checklist label:last-of-type { border-bottom: 0; }
+.checklist input { width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px; cursor: pointer; accent-color: var(--gold); }
+.checklist input:checked + span { text-decoration: line-through; color: var(--concrete); }
+.ready {
+  display: none; margin-top: 12px; padding: 10px 14px;
+  background: var(--gold); color: #fff; font-family: 'Space Mono', monospace; font-weight: 700;
+}
+.ready.show { display: block; }
 
-.mark-card {
-  background: white;
-  border: 2px solid var(--warm-mid);
-  border-radius: 4px;
-  padding: 12px 8px;
-  text-align: center;
-  transition: all 0.2s;
-}
-.mark-card:hover { border-color: var(--teal); transform: translateY(-3px); }
-.mark-card .mark-icon { font-size: 1.6rem; display: block; margin-bottom: 5px; }
-.mark-card .mark-name { font-family: 'Space Mono', monospace; font-size: 0.68rem; font-weight: 700; color: var(--teal); display: block; }
-.mark-card .mark-use { font-size: 0.7rem; color: var(--concrete); margin-top: 3px; line-height: 1.4; }
 
-/* BOXES */
-.notice {
-  background: rgba(234,55,163,0.08);
-  border-left: 5px solid var(--pink);
-  padding: 12px 16px;
-  margin: 14px 0;
-  border-radius: 0 4px 4px 0;
-  font-size: 0.85rem;
-}
-.notice strong { color: var(--pink); }
+.checklist .head { display:flex; justify-content:space-between; align-items:center; font-family:'Space Mono',monospace; font-weight:700; margin-bottom:6px; }
+.tutor { background: var(--purple-light); border: 2px dashed var(--purple); padding: 14px 18px; margin: 14px 0; }
+.tutor strong { font-family: 'Space Mono', monospace; color: var(--purple); }
+.compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0; }
+.compare > div { background:#fff; border:2px solid var(--ink); padding:14px 16px; }
+.compare .bad { border-top:6px solid #c62828; } .compare .good { border-top:6px solid #2e7d32; }
+.compare h3 { margin-top:0; }
+.compare ul { margin-left:18px; }
+@media (max-width:600px){ .compare{grid-template-columns:1fr;} }
+code.prompt { font-family:'Space Mono',monospace; background:var(--ink); color:#fff; padding:2px 8px; font-size:0.85rem; display:inline-block; margin-top:4px; }
+.game-item { background:#fff; border:2px solid var(--ink); margin-bottom:10px; }
+.game-item .gi-head { display:flex; gap:12px; align-items:flex-start; padding:12px 14px; }
+.game-item .gi-text { flex:1; font-size:0.95rem; }
+.game-item .gi-btns { display:flex; gap:6px; flex-shrink:0; }
+.game-item .gi-btns button { font-family:'Space Mono',monospace; font-size:0.78rem; font-weight:700; padding:6px 10px; border:2px solid var(--ink); background:var(--paper); cursor:pointer; }
+.game-item.done { border-color:#2e7d32; background:#eef8f0; }
+.game-item.done .gi-done { background:#2e7d32; color:#fff; border-color:#2e7d32; }
+.game-item .gi-body { display:none; padding:0 14px 14px; border-top:1px dashed var(--warm-mid); }
+.game-item.open .gi-body { display:block; }
+.game-item .gi-body img { max-width:520px; }
+.subtabs { display:flex; gap:8px; margin:10px 0 14px; flex-wrap:wrap; }
+.subtabs button { font-family:'Space Mono',monospace; font-weight:700; font-size:0.85rem; padding:10px 14px; border:2px solid var(--ink); background:#fff; cursor:pointer; }
+.subtabs button.on { background:var(--teal); color:#fff; border-color:var(--teal); }
+.celebrate { display:none; background:var(--gold); color:#fff; font-family:'Space Mono',monospace; font-weight:700; padding:10px 14px; margin-top:8px; }
+.celebrate.show { display:block; }
+.ref-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+.ref-links a { display:block; background:#fff; border:2px solid var(--ink); padding:12px; color:var(--ink); text-decoration:none; font-size:0.88rem; }
+.ref-links a:hover { box-shadow:4px 4px 0 var(--ink); transform:translate(-2px,-2px); }
+.ref-links b { font-family:'Space Mono',monospace; display:block; color:var(--teal); }
+.ref-links small { color:var(--concrete); font-family:'Space Mono',monospace; font-size:0.72rem; }
+.print-btn { position:fixed; right:16px; bottom:16px; width:46px; height:46px; border:2px solid var(--ink); background:#fff; font-size:1.2rem; cursor:pointer; }
+@media print { .print-btn, nav, .pager, .progress-wrap { display:none !important; } .section { display:block !important; } }
 
-.tip-box {
-  background: #fffbea;
-  border: 2px solid #e6c200;
-  border-radius: 4px;
-  padding: 14px 18px;
-  margin: 14px 0;
-  font-size: 0.85rem;
-}
-.tip-box h4 { color: #a08800; font-family: 'Space Mono', monospace; font-size: 0.72rem; text-transform: uppercase; margin-bottom: 8px; }
-.tip-box ul { margin-left: 16px; }
-.tip-box li { margin-bottom: 4px; }
 
-.info-box {
-  border: 2px solid var(--teal);
-  border-radius: 4px;
-  padding: 14px 18px;
-  margin: 16px 0;
-  background: var(--teal-light);
-  font-size: 0.87rem;
-}
-.info-box strong { color: var(--teal); }
+/* ---------- Term 3 additions ---------- */
+.reflect div { line-height: 1.5; }
+.arc { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); border:2px solid var(--ink); margin: 0 0 20px; font-family:'Space Mono',monospace; font-size:0.8rem; }
+.arc div { padding:10px 12px; background:#fff; border-right:2px solid var(--ink); }
+.arc div:last-child { border-right:0; }
+.arc div.here { background:var(--ink); color:#fff; }
+.arc b { display:block; font-size:0.7rem; letter-spacing:1px; color:var(--pink); }
+.flow { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:12px 0 20px; font-family:'Space Mono',monospace; font-size:0.85rem; }
+.flow span.f { background:#fff; border:2px solid var(--ink); padding:8px 12px; }
+.flow span.a { color:var(--pink); font-weight:700; }
+.pair { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (max-width:600px){ .pair{grid-template-columns:1fr;} }
+.pair figure { margin:0; }
+.pair figcaption, .thumbs figcaption { font-family:'Space Mono',monospace; font-size:0.78rem; color:#ddd; margin-top:4px; }
+.guide { background:#fff; border:2px solid var(--ink); padding:14px; margin:12px 0; overflow-x:auto; }
+.guide svg { display:block; max-width:100%; height:auto; }
+.time { display:inline-block; font-family:'Space Mono',monospace; font-size:0.75rem; font-weight:700; background:var(--ink); color:#fff; padding:2px 8px; margin-left:6px; vertical-align:middle; }
+.section-banner .title { word-break: break-word; }
+img { max-width:100%; }
+.upload { background:#fff; border:3px dashed var(--gold); padding:20px; text-align:center; margin:18px 0; }
+.upload .cards { text-align:left; }
+.card.purple { border-top: 6px solid var(--purple); }
 
-.compare-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 16px 0;
-}
-@media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
-
-.compare-card {
-  border-radius: 4px;
-  padding: 14px;
-  border: 2px solid var(--warm-mid);
-  background: white;
-}
-.compare-card h4 { font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700; margin-bottom: 8px; }
-.compare-card ul { margin-left: 14px; }
-.compare-card li { font-size: 0.82rem; margin-bottom: 4px; }
-.compare-card.good { border-color: var(--teal); }
-.compare-card.good h4 { color: var(--teal); }
-.compare-card.warn { border-color: var(--blue-accent); }
-.compare-card.warn h4 { color: var(--blue-accent); }
-
-.workflow {
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 20px 0;
-}
-.workflow-head {
-  background: var(--ink);
-  color: white;
-  padding: 10px 18px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.workflow-body { background: white; padding: 14px 18px; }
-
-/* CHECKLIST */
-.checklist {
-  background: white;
-  border: 2px solid var(--teal);
-  border-radius: 4px;
-  padding: 22px;
-  margin: 28px 0;
-}
-.checklist h3 {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-  color: var(--teal);
-  text-align: center;
-  border-bottom: 2px dashed var(--teal);
-  padding-bottom: 12px;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-.check-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--teal);
-  border-radius: 3px;
-  flex-shrink: 0;
-  cursor: pointer;
-  position: relative;
-  transition: background 0.2s;
-  margin-top: 2px;
-}
-.check-box:hover { background: var(--teal-light); }
-.check-box.checked { background: var(--teal); }
-.check-box.checked::after {
-  content: '✓';
-  position: absolute;
-  color: white;
-  font-size: 13px;
-  font-weight: 700;
-  top: 0px; left: 3px;
-}
-.check-label { font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; color: var(--teal); display: block; }
-.check-desc { font-size: 0.78rem; color: var(--concrete); margin-top: 2px; }
-
-/* LIGHTBOX */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  inset: 0;
-  background: rgba(0,0,0,0.92);
-}
-.modal-img {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  max-width: 92vw;
-  max-height: 90vh;
-  border: 3px solid white;
-  border-radius: 3px;
-}
-.modal-close {
-  position: absolute;
-  top: 18px; right: 28px;
-  color: white;
-  font-size: 2.5rem;
-  cursor: pointer;
-  font-family: 'Space Mono', monospace;
-  line-height: 1;
-}
-.modal-close:hover { color: var(--pink); }
-
-footer {
-  text-align: center;
-  padding: 20px 0 10px;
-  border-top: 1px dashed var(--warm-mid);
-  margin-top: 40px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
-  color: var(--concrete);
-}
-
-@media (max-width: 600px) {
-  .container { padding: 24px 16px 40px; }
-  .mark-grid { grid-template-columns: repeat(2, 1fr); }
-}
 </style>
 </head>
 <body>
-
-<div class="container">
-
-  <header class="site-header">
-    <div class="header-eyebrow">Fashion Design · Term 3 · Session 2 — Homework</div>
-    <h1>Make Your<br><em>Mark Library</em></h1>
-    <span class="header-tag">Complete before class</span>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Homework · Fashion Design · Term 3 · Week 2</div>
+      <h1>Make Your<br><em>Mark Library</em></h1>
+    </div>
+    <div class="meta"><strong>5 steps ↓</strong>then bring to class</div>
   </header>
-
-  <div class="section-banner">HOMEWORK — Do this before your next session</div>
-
-  <p>You will make a set of hand-made marks. In class, you will upload these to Calligraphr and turn them into a font you can type with in Photoshop.</p>
-
-  <div class="diagonal-rule"></div>
-
-  <!-- STUDENT EXAMPLE -->
-  <h2>What You Are Working Toward</h2>
-  <p>Look at how student Micky Zhuo used hand-made marks to connect images and build a research page:</p>
-
-  <div class="image-panel">
-    <div class="image-panel-header">Student Example — Micky Zhuo: Design 2025/26 · Theme: Memory of the City</div>
-    <div class="image-panel-body">
-      <div class="img-slot">
-        <img src="micky_1.jpg" alt="Micky Zhuo research page 1" onclick="openModal(this.src)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="img-slot-placeholder" style="display:none">[micky_1.jpg]</div>
-        <div class="img-caption">Research page — marks connecting primary and secondary images</div>
-      </div>
-      <div class="annotation-list">
-        <div class="annotation"><strong>Gestural marks as texture</strong>Scratchy ink marks surround the images — they feel like the research theme itself.</div>
-        <div class="annotation"><strong>The diagonal slash</strong>One line cuts across the whole page, connecting primary photography with secondary research.</div>
-        <div class="annotation"><strong>Colour as a signal</strong>One blue thread runs across the page. It tells the reader: these things are connected.</div>
-      </div>
-    </div>
-    <div class="image-panel-body" style="border-top:1px solid rgba(255,255,255,0.08);">
-      <div class="img-slot">
-        <img src="micky_2.jpg" alt="Micky Zhuo research page 2" onclick="openModal(this.src)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="img-slot-placeholder" style="display:none">[micky_2.jpg]</div>
-        <div class="img-caption">Research page — drawn rectangles and arrows as analysis</div>
-      </div>
-      <div class="annotation-list">
-        <div class="annotation"><strong>Drawn rectangles</strong>A hand-drawn box over a photograph says "look here — this part matters."</div>
-        <div class="annotation"><strong>Arrows that guide</strong>Small arrows move the reader from one image to the next.</div>
-        <div class="annotation"><strong>Text placed like a mark</strong>Words are rotated and placed as drawing elements — not just information in a straight line.</div>
-      </div>
+  <div class="due"><span>⏰</span>Due before next class</div>
+  <p class="intro" style="margin-top:18px">Make a set of hand-made marks.<br>In class, you turn them into a <strong>font</strong> for Photoshop.</p>
+  <div class="rule"></div>
+  <h2>What you are working towards</h2>
+  <div class="example">
+    <div class="label">Student example · Micky Zhuo · Design 2025/26 · Memory of the City</div>
+    <div class="pair">
+      <figure><img class="zoom" src="micky_1.jpg" alt="Micky Zhuo research page 1" loading="lazy" onerror="this.style.display='none'"><figcaption>Marks connect her photos and research</figcaption></figure>
+      <figure><img class="zoom" src="micky_2.jpg" alt="Micky Zhuo research page 2" loading="lazy" onerror="this.style.display='none'"><figcaption>Drawn boxes and arrows guide the eye</figcaption></figure>
     </div>
   </div>
-
-  <div class="diagonal-rule"></div>
-
-  <!-- STEP 1 -->
-  <h2>Step 1 — Find Your Research Theme</h2>
-  <p>Your marks should express your research idea. Ask yourself:</p>
-  <ul>
-    <li>What connects your artist references?</li>
-    <li>Is there a feeling or texture in your research images?</li>
-    <li>If your project had a material quality — rough, fragile, geometric — what would it be?</li>
-  </ul>
-
-  <div class="tip-box">
-    <h4>💡 Important question</h4>
-    Does this mark feel like my research theme? A mark about decay should feel different from a mark about structure.
+  <div class="cards">
+    <div class="card teal"><div class="label">Marks as texture</div><p>Scratchy ink sets the mood.</p></div>
+    <div class="card pink"><div class="label">Diagonal slash</div><p>One line connects the page.</p></div>
+    <div class="card teal"><div class="label">Drawn boxes</div><p>"Look here — this matters."</p></div>
+    <div class="card pink"><div class="label">Arrows</div><p>Move the reader from image to image.</p></div>
   </div>
-
-  <div class="diagonal-rule"></div>
-
-  <!-- STEP 2 -->
-  <h2>Step 2 — Plan Your Mark Set</h2>
-  <p>You need <strong>at least 8–10 marks</strong>. Plan one mark for each function:</p>
-
-  <div class="mark-grid">
-    <div class="mark-card">
-      <span class="mark-icon">→</span>
-      <span class="mark-name">1–2 arrows</span>
-      <span class="mark-use">Connect images together</span>
-    </div>
-    <div class="mark-card">
-      <span class="mark-icon">╱</span>
-      <span class="mark-name">1–2 dividers</span>
-      <span class="mark-use">Create zones on the page</span>
-    </div>
-    <div class="mark-card">
-      <span class="mark-icon">◻</span>
-      <span class="mark-name">1 frame</span>
-      <span class="mark-use">Highlight part of an image</span>
-    </div>
-    <div class="mark-card">
-      <span class="mark-icon">≈</span>
-      <span class="mark-name">2–3 textures</span>
-      <span class="mark-use">Hatching, stipple, grain</span>
-    </div>
-    <div class="mark-card">
-      <span class="mark-icon">✦</span>
-      <span class="mark-name">1 emphasis</span>
-      <span class="mark-use">Flag a key reference</span>
-    </div>
-    <div class="mark-card">
-      <span class="mark-icon">∿</span>
-      <span class="mark-name">1 connector</span>
-      <span class="mark-use">Link two ideas together</span>
-    </div>
-  </div>
-
-  <div class="diagonal-rule"></div>
-
-  <!-- STEP 3 -->
-  <h2>Step 3 — Download the Calligraphr Template</h2>
-
-  <div class="workflow">
-    <div class="workflow-head">Getting Your Template</div>
-    <div class="workflow-body">
-      <div class="step-block">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-title">Log in to Calligraphr</div>
-          <p>Go to <a href="https://www.calligraphr.com" target="_blank">calligraphr.com</a> — use your Session 1 account.</p>
-        </div>
+  <div class="rule"></div>
+  <h2>5 steps · click to open</h2>
+    <div class="step open">
+      <button class="step-head"><span class="step-num bg-teal">1</span>Find your research theme<span class="arrow">▶</span></button>
+      <div class="step-body">
+<ul><li>What connects your artist references?</li><li>Is there a feeling or texture in your images?</li><li>Rough, fragile, geometric — what is your theme like?</li></ul><div class="box gold"><strong>💡 Ask</strong><p style="margin:6px 0 0">Does this mark feel like my theme? Decay and structure need different marks.</p></div>
       </div>
-      <div class="step-block">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-title">Download the Punctuation Template</div>
-          <ul>
-            <li>Click <strong>Templates</strong></li>
-            <li>Select the <strong>punctuation / special characters</strong> set</li>
-            <li>Download as <strong>PDF</strong> — print on white paper</li>
-          </ul>
-        </div>
-      </div>
-      <div class="step-block">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-title">Plan Your Mark Map</div>
-          <p>Write a small pencil note at the top of each box — which mark goes here? Keep this note — you will need it in class.</p>
+    </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-teal">2</span>Plan 8–10 marks<span class="arrow">▶</span></button>
+      <div class="step-body">
+<div class="cards">
+          <div class="card teal"><div class="icon">→</div><div class="label">1–2 arrows</div><p>Connect images</p></div>
+          <div class="card pink"><div class="icon">╱</div><div class="label">1–2 dividers</div><p>Make zones</p></div>
+          <div class="card teal"><div class="icon">◻</div><div class="label">1 frame</div><p>Highlight part of an image</p></div>
+          <div class="card pink"><div class="icon">≈</div><div class="label">2–3 textures</div><p>Hatching, dots, grain</p></div>
+          <div class="card teal"><div class="icon">✦</div><div class="label">1 emphasis</div><p>Flag a key reference</p></div>
+          <div class="card pink"><div class="icon">∿</div><div class="label">1 connector</div><p>Link two ideas</p></div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="diagonal-rule"></div>
-
-  <!-- STEP 4 -->
-  <h2>Step 4 — Make Your Marks</h2>
-  <p>Use <strong>black ink</strong> on the printed template. Fill each box boldly.</p>
-
-  <div class="single-image">
-    <div class="single-image-caption">Example — Completed Mark Template</div>
-    <img src="mark-template-example.jpg" alt="Completed Calligraphr mark template" onclick="openModal(this.src)" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div class="single-image-placeholder" style="display:none">[mark-template-example.jpg — add to repository]</div>
-  </div>
-
-  <div class="compare-grid">
-    <div class="compare-card good">
-      <h4>✓ Works well</h4>
-      <ul>
-        <li>Bold brush marks in black ink</li>
-        <li>Thick pen gestures</li>
-        <li>Stamp impressions</li>
-        <li>Drawn shapes — arrows, rectangles</li>
-        <li>Flicked or splattered ink</li>
-      </ul>
-    </div>
-    <div class="compare-card warn">
-      <h4>⚠ Test first</h4>
-      <ul>
-        <li>Very light pencil</li>
-        <li>Pale or diluted ink</li>
-        <li>Very fine crosshatching</li>
-        <li>Photographic textures</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="notice">
-    <strong>Important:</strong> Calligraphr traces whatever black shape it finds. Keep marks <strong>dark, clear, and inside the box</strong>.
-  </div>
-
-  <div class="tip-box">
-    <h4>💡 Tips</h4>
-    <ul>
-      <li>Make 2–3 versions of each mark and choose the best</li>
-      <li>Wait for ink to dry before scanning</li>
-      <li>Make all marks in one session so they feel consistent</li>
-    </ul>
-  </div>
-
-  <div class="diagonal-rule"></div>
-
-  <!-- STEP 5 -->
-  <h2>Step 5 — Scan Your Template</h2>
-  <ul>
-    <li>Scan at <strong>300 DPI or higher</strong></li>
-    <li>Or use <strong>Adobe Scan</strong> or <strong>Microsoft Lens</strong> on your phone</li>
-    <li>Save as <strong>JPEG</strong></li>
-    <li>Check it is straight — no shadows across the boxes</li>
-  </ul>
-
-  <div class="info-box">
-    <strong>Bring to class:</strong> your scanned JPEG and your mark map (the note showing which mark is in which box).
-  </div>
-
-  <div class="diagonal-rule"></div>
-
-  <!-- CHECKLIST -->
-  <div class="checklist">
-    <h3>Homework Checklist ✓</h3>
-    <div class="check-item">
-      <div class="check-box" onclick="toggleCheck(this)"></div>
-      <div>
-        <span class="check-label">I know my research theme</span>
-        <span class="check-desc">I can describe the concept driving my project</span>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-pink">3</span>Download the template<span class="arrow">▶</span></button>
+      <div class="step-body">
+<ul><li>Log in to <a href="https://www.calligraphr.com" target="_blank" rel="noopener">calligraphr.com ↗</a> — use your Week 1 account</li><li>Click <strong>Templates</strong> → <strong>punctuation / special characters</strong></li><li>Download as <strong>PDF</strong>. Print on white paper.</li><li>Write a small pencil note on each box: which mark goes here? This is your <strong>mark map</strong>.</li></ul>
       </div>
     </div>
-    <div class="check-item">
-      <div class="check-box" onclick="toggleCheck(this)"></div>
-      <div>
-        <span class="check-label">I have planned 8–10 marks</span>
-        <span class="check-desc">Arrows, dividers, frames, textures, emphasis marks</span>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-pink">4</span>Make your marks<span class="arrow">▶</span></button>
+      <div class="step-body">
+<p>Use <strong>black ink</strong>. Fill each box <strong>boldly</strong>.</p>
+        <img class="zoom" src="mark-template-example.jpg" alt="Completed Calligraphr mark template" loading="lazy" onerror="this.style.display='none'">
+        <div class="compare"><div class="good"><h3>✓ Works well</h3><ul><li>Bold brush marks</li><li>Thick pen gestures</li><li>Stamp prints</li><li>Arrows, rectangles</li><li>Splattered ink</li></ul></div><div class="bad"><h3>⚠ Test first</h3><ul><li>Light pencil</li><li>Pale ink</li><li>Very fine crosshatching</li><li>Photo textures</li></ul></div></div>
+        <div class="box pink"><strong>⚠️ Important</strong><p style="margin:6px 0 0">Keep marks <strong>dark, clear and inside the box</strong>.</p></div>
       </div>
     </div>
-    <div class="check-item">
-      <div class="check-box" onclick="toggleCheck(this)"></div>
-      <div>
-        <span class="check-label">I have downloaded and printed the Calligraphr template</span>
-        <span class="check-desc">Punctuation template from calligraphr.com</span>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-pink">5</span>Scan your template<span class="arrow">▶</span></button>
+      <div class="step-body">
+<ul><li>Scan at <strong>300 DPI</strong> or more — or use Adobe Scan / Microsoft Lens</li><li>Save as <strong>JPEG</strong></li><li>Straight, no shadows</li></ul>
       </div>
     </div>
-    <div class="check-item">
-      <div class="check-box" onclick="toggleCheck(this)"></div>
-      <div>
-        <span class="check-label">I have made my marks in black ink</span>
-        <span class="check-desc">Bold, dark, each mark kept inside its box</span>
-      </div>
+  <div class="box gold"><strong>💡 Tips</strong><ul><li>Make 2–3 versions of each mark. Choose the best.</li><li>Let the ink dry before you scan.</li><li>Make all marks in one session — they match better.</li></ul></div>
+    <div class="stuck">
+      <div class="stuck-head">🆘 Stuck? Try this</div>
+      <div class="row"><div class="prob">I do not know my theme</div><div class="fix">Look at your research pages. What word would you use as a subheading?</div></div>
+      <div class="row"><div class="prob">My marks look too neat</div><div class="fix">Try a different tool: a brush, a stick, a stamp, your finger.</div></div>
+      <div class="row"><div class="prob">A mark went outside the box</div><div class="fix">Print a new template. Draw it again.</div></div>
+      <div class="row"><div class="prob">No scanner</div><div class="fix">Use Adobe Scan or Microsoft Lens on your phone.</div></div>
     </div>
-    <div class="check-item">
-      <div class="check-box" onclick="toggleCheck(this)"></div>
-      <div>
-        <span class="check-label">I have scanned my template as a JPEG</span>
-        <span class="check-desc">Clear, straight, 300 DPI minimum</span>
-      </div>
-    </div>
-    <div class="check-item">
-      <div class="check-box" onclick="toggleCheck(this)"></div>
-      <div>
-        <span class="check-label">I have my mark map</span>
-        <span class="check-desc">A note showing which mark is in which box</span>
-      </div>
-    </div>
+  <div class="rule"></div>
+  <div class="save">
+    <div class="title">💾 Bring to class</div>
+    <ul><li>📱 Your scanned JPEG — phone, USB or cloud</li><li>📝 Your mark map</li></ul>
+  </div>
+  <div class="checklist gold" id="checklist">
+    <div class="head"><span>Homework checklist</span><span class="count">0 / 6</span></div>
+    <label><input type="checkbox"><span>I know my research theme</span></label>
+    <label><input type="checkbox"><span>I planned 8–10 marks</span></label>
+    <label><input type="checkbox"><span>I printed the punctuation template</span></label>
+    <label><input type="checkbox"><span>I made my marks in black ink</span></label>
+    <label><input type="checkbox"><span>I scanned it as a JPEG</span></label>
+    <label><input type="checkbox"><span>I have my mark map</span></label>
+    <div class="ready">🎉 You're ready for class!</div>
   </div>
 
+  <footer>UAL · Digital Skills · Fashion Design Term 3 · Week 2 Homework · Make Your Mark Library</footer>
 </div>
 
-<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
-  <span class="modal-close" onclick="closeModal()">×</span>
-  <img class="modal-img" id="modalImg">
-</div>
-
-<footer>
-  © 2025 Fashion Design Term 3 — Typing Your Mark-Making · Homework
-</footer>
+<div class="lightbox" id="lightbox"><img alt=""></div>
+<button class="print-btn" onclick="window.print()" title="Print">🖨️</button>
 
 <script>
-function toggleCheck(el) {
-  el.classList.toggle('checked');
-  const states = Array.from(document.querySelectorAll('.check-box')).map(b => b.classList.contains('checked'));
-  localStorage.setItem('marks-hw-checklist', JSON.stringify(states));
-}
 
-function openModal(src) {
-  document.getElementById('modalImg').src = src;
-  document.getElementById('modal').style.display = 'block';
+const SECTIONS = Array.from(document.querySelectorAll(".section")).map(s => s.id);
+function goTo(id) {
+  document.querySelectorAll(".section").forEach(s => s.classList.toggle("active", s.id == id));
+  document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.target == id));
+  document.querySelectorAll("#" + id + " video").forEach(v => { v.play().catch(() => {}); });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
+document.querySelectorAll(".nav-btn").forEach(b => b.addEventListener("click", () => goTo(b.dataset.target)));
+document.querySelectorAll("[data-goto]").forEach(b => b.addEventListener("click", () => goTo(b.dataset.goto)));
 
-function closeModal() {
-  document.getElementById('modal').style.display = 'none';
-}
+document.querySelectorAll(".step-head").forEach(h => h.addEventListener("click", () => h.parentElement.classList.toggle("open")));
 
-document.addEventListener('DOMContentLoaded', function() {
-  const saved = localStorage.getItem('marks-hw-checklist');
-  if (!saved) return;
-  JSON.parse(saved).forEach((v, i) => {
-    if (v) document.querySelectorAll('.check-box')[i].classList.add('checked');
+const PAGE = "t3-w2-hw";
+function updateProgress() {
+  const boxes = document.querySelectorAll(".checklist:not(.nocount) input");
+  let ticked = 0;
+  boxes.forEach(b => { if (b.checked) ticked++; });
+  const pct = boxes.length ? Math.round((ticked / boxes.length) * 100) : 0;
+  const fill = document.getElementById("progFill");
+  if (fill) { fill.style.width = pct + "%"; document.getElementById("progText").textContent = pct + "%"; }
+  document.querySelectorAll(".nav-btn").forEach(btn => {
+    const sec = document.getElementById(btn.dataset.target);
+    const items = sec ? sec.querySelectorAll(".checklist:not(.nocount) input") : [];
+    let done = items.length > 0;
+    items.forEach(b => { if (!b.checked) done = false; });
+    btn.classList.toggle("done", done);
   });
+  document.querySelectorAll(".checklist").forEach(list => {
+    const all = list.querySelectorAll("input");
+    let n = 0;
+    all.forEach(b => { if (b.checked) n++; });
+    const count = list.querySelector(".count");
+    if (count) count.textContent = n + " / " + all.length;
+    const ready = list.querySelector(".ready");
+    if (ready) ready.classList.toggle("show", n == all.length);
+  });
+}
+document.querySelectorAll(".checklist").forEach(list => {
+  const k = PAGE + "-" + list.id;
+  const boxes = list.querySelectorAll("input");
+  try {
+    const saved = JSON.parse(localStorage.getItem(k) || "[]");
+    boxes.forEach((b, i) => { if (saved[i]) b.checked = true; });
+  } catch (e) {}
+  boxes.forEach(b => b.addEventListener("change", () => {
+    try { localStorage.setItem(k, JSON.stringify(Array.from(boxes).map(x => x.checked))); } catch (e) {}
+    updateProgress();
+  }));
 });
+updateProgress();
+
+const lb = document.getElementById("lightbox");
+document.querySelectorAll("img.zoom").forEach(im => im.addEventListener("click", () => {
+  lb.querySelector("img").src = im.src;
+  lb.classList.add("open");
+}));
+lb.addEventListener("click", () => lb.classList.remove("open"));
+document.addEventListener("keydown", e => { if (e.key == "Escape") lb.classList.remove("open"); });
+
 </script>
+
 </body>
 </html>
